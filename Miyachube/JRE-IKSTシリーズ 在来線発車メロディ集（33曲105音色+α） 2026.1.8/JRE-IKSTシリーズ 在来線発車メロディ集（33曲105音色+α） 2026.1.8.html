@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f9f9f9;
+      color: #0f0f0f;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1fr);
+      gap: 24px;
+    }
+
+    /* 左側：メイン動画エリア */
+    .player-area {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .player {
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .player iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .player video {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-title {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .video-meta {
+      font-size: 13px;
+      color: #606060;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .video-meta span::after {
+      content: "・";
+      margin: 0 2px;
+    }
+
+    .video-meta span:last-child::after {
+      content: "";
+    }
+
+    .video-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .channel-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .channel-avatar { /* チャンネルアイコン */
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    .channel-text { /* チャンネル詳細 */
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+    }
+
+    .channel-name { /* チャンネル名 */
+      font-weight: 600;
+    }
+
+    .channel-subs {
+      color: #606060;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: none;
+      background: #f2f2f2;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-action:hover {
+      background: #e5e5e5;
+    }
+
+    .video-description { /* 概要欄 */
+      margin-top: 12px;
+      background: #f2f2f2;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .video-description .stats {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* 右側：関連動画リスト */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .recommend-item {
+      display: grid;
+      grid-template-columns: 168px minmax(0, 1fr);
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .recommend-thumb {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ddd;
+      aspect-ratio: 16 / 9;
+    }
+
+    .recommend-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .recommend-duration {
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .recommend-info {
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .recommend-title {
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .recommend-channel,
+    .recommend-meta {
+      color: #606060;
+    }
+
+    .recommend-item:hover .recommend-title {
+      text-decoration: underline;
+    }
+
+    /* レスポンシブ（幅が狭いときは縦並び） */
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="../Miyachube.html"><img src="../Miyachube.png" width="20%" height="20%"></a>
+  <div class="page">
+    <!-- 左：メイン動画エリア -->
+    <main class="player-area">
+      <div class="player">
+        <video controls preload="none" playsinline poster="JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8.jpg">
+            <source src="JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8.mp4" type="video/mp4">
+            お使いのブラウザは video タグに対応していません。
+        </video>
+      </div>
+
+      <h1 class="video-title">JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8</h1>
+
+      <div class="video-actions">
+        <div class="channel-info">
+          <div class="channel-avatar"><img src="../channelIcon/八川ゆき.jpg" style="border-radius: 40px;"></div>
+          <div class="channel-text">
+            <div class="channel-name" style="font-size: large;">八川ゆき</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-description">
+        <div class="stats">2026/01/08</div>
+        本人からの提供動画です。Youtubeで確認ください。
+        <a href="https://www.youtube.com/watch?v=xE59f5UHOAM" target="_blank">https://www.youtube.com/watch?v=xE59f5UHOAM</a>
+      </div>
+    </main>
+
+    <!-- 右：関連動画エリア -->
+    <aside class="sidebar">
+      <div class="sidebar-title">おすすめ</div>
+
+      <a href="../JR-SHシリーズ集【高音質】/JR-SHシリーズ集【高音質】.html" style="color: black; text-decoration: none;" class="recommend-item">
+        <div class="recommend-thumb">
+          <img src="../JR-SHシリーズ集【高音質】/JR-SHシリーズ集【高音質】.jpg" alt="JR-SHシリーズ集【高音質】">
+          <div class="recommend-duration">5:56</div>
+        </div>
+        <div class="recommend-info">
+          <div class="recommend-title">ATOS風放送シミュレーターをブラウザで作る</div>
+          <div class="recommend-channel">蛙岐阜県の</div>
+          <div class="recommend-meta">2011/11/06</div>
+        </div>
+      </a>
+
+      <!-- ここに同じ構造でどんどん追加してOK -->
+    </aside>
+  </div>
+</body>
+</html>

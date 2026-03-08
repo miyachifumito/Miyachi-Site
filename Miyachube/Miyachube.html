@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="">
+        <title>Miyachube</title>
+    </head>
+        <style>
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            background: #f9f9f9;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* カードを並べるエリア */
+        .video-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          gap: 16px;
+        }
+
+        /* 1つのカード */
+        .video-card {
+          background: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+          cursor: pointer;
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+        }
+
+        /* サムネイル部分 */
+        .thumbnail {
+          position: relative;
+          aspect-ratio: 16 / 9; /* YouTubeっぽい比率 */
+          background: #ddd;
+        }
+
+        .thumbnail img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* タイトルなどのテキスト部分 */
+        .video-info {
+            padding: 8px 10px 10px;
+        }
+
+        .video-title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .video-meta {
+            font-size: 12px;
+            color: #606060;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="page">
+        <h1 style="background-color: yellow;">Miyachube</h1>
+        <p><a href="../index.html">トップページに戻る</a></p>
+        <div class="video-grid">
+          <a href="JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8/JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8.html" style="text-decoration: none; color: black;" class="video-card">
+            <div class="thumbnail">
+              <img src="JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8/JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8.jpg" alt="JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8">
+            </div>
+            <div class="video-info">
+              <div class="video-title">JRE-IKSTシリーズ 在来線発車メロディ集（33曲105音色+α） 2026.1.8</div>
+              <div class="video-meta">八川ゆき</div>
+            </div>
+          </a>
+
+          <a href="JR-SHシリーズ集【高音質】/JR-SHシリーズ集【高音質】.html" style="text-decoration: none; color: black;" class="video-card">
+            <div class="thumbnail">
+              <img src="JR-SHシリーズ集【高音質】/JR-SHシリーズ集【高音質】.jpg" alt="JR-SHシリーズ集【高音質】">
+            </div>
+            <div class="video-info">
+              <div class="video-title">JR-SHシリーズ集【高音質】</div>
+              <div class="video-meta">蛙岐阜県の</div>
+            </div>
+          </a>
+
+          <!-- ここに同じ構造でカードを増やす -->
+        </div>
+    </div>
+    </body>
+</html>

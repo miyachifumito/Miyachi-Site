@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>テスト</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 500px;
+      height: 150px;
+      font-size: 18px;
+      padding: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    #status, #missing {
+      margin-top: 15px;
+      font-size: 16px;
+      white-space: pre-wrap;
+    }
+    #missing {
+      color: #b30000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>テスト</h1>
+
+  <textarea id="textInput" placeholder="ここに文字を入力してください"></textarea><br>
+  <button id="playButton">再生</button>
+
+  <div id="status"></div>
+  <div id="missing"></div>
+
+  <script>
+  // ★ charMap のキー単位で区切る
+  const charMap = {
+    "まもなく": "parts/kihon/まもなく_t.wav",
+    "1番線に": "parts/bansen/1番線に_t.wav",
+    "2番線に": "parts/bansen/2番線に_t.wav",
+    "3番線に": "parts/bansen/3番線に_t.wav",
+    "4番線に": "parts/bansen/4番線に_t.wav",
+    "5番線に": "parts/bansen/5番線に_t.wav",
+    "6番線に": "parts/bansen/6番線に_t.wav",
+    "7番線に": "parts/bansen/7番線に_t.wav",
+    "8番線に": "parts/bansen/8番線に_t.wav",
+    "9番線に": "parts/bansen/9番線に_t.wav",
+    "10番線に": "parts/bansen/10番線に_t.wav",
+    "11番線に": "parts/bansen/11番線に_t.wav",
+    "12番線に": "parts/bansen/12番線に_t.wav",
+    "13番線に": "",
+    "14番線に": "parts/bansen/1番線に_t.wav",
+    "15番線に": "parts/bansen/1番線に_t.wav",
+    "16番線に": "parts/bansen/1番線に_t.wav"
+  };
+
+  const playButton = document.getElementById('playButton');
+  const textInput = document.getElementById('textInput');
+  const statusEl = document.getElementById('status');
+  const missingEl = document.getElementById('missing');
+
+  let isPlaying = false;
+
+  playButton.addEventListener('click', () => {
+    if (isPlaying) return;
+
+    const raw = textInput.value;
+    if (!raw) {
+      statusEl.textContent = '文字を入力してください。';
+      return;
+    }
+
+    missingEl.textContent = "";
+
+    // 「、」「。」でパーツ分割
+    const parts = raw.split(/[、。]/).filter(p => p.trim() !== "");
+
+    const queue = [];
+    const missing = new Set();
+
+    // ★ charMap のキーを長い順に並べる
+    const keys = Object.keys(charMap).sort((a, b) => b.length - a.length);
+
+    // ★ パーツごとに「最長一致」でマッチング
+    for (const part of parts) {
+      let i = 0;
+
+      while (i < part.length) {
+        let matched = false;
+
+        for (const key of keys) {
+          if (part.startsWith(key, i)) {
+            queue.push(charMap[key]);
+            i += key.length;
+            matched = true;
+            break;
+          }
+        }
+
+        if (!matched) {
+          missing.add(part[i]);
+          i++;
+        }
+      }
+    }
+
+    // 不足パーツ表示
+    if (missing.size > 0) {
+      missingEl.textContent = "不足パーツ: " + Array.from(missing).join(" / ");
+    }
+
+    if (queue.length === 0) {
+      statusEl.textContent = '再生できる音声がありません。';
+      return;
+    }
+
+    isPlaying = true;
+    statusEl.textContent = '再生中…';
+
+    const playNext = () => {
+      if (queue.length === 0) {
+        isPlaying = false;
+        statusEl.textContent = '再生完了。';
+        return;
+      }
+
+      const src = queue.shift();
+      const audio = new Audio(src);
+
+      audio.addEventListener('ended', playNext);
+      audio.addEventListener('error', () => {
+        console.error('読み込み失敗:', src);
+        playNext();
+      });
+
+      audio.play();
+    };
+
+    playNext();
+  });
+</script>
+
+</body>
+</html>

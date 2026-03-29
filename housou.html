@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>テスト</title>
+    <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 500px;
+      height: 150px;
+      font-size: 18px;
+      padding: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin: 5px;
+    }
+
+    #categoryButtons {
+      margin-top: 20px;
+    }
+
+    #partsList,
+    #subParts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .part {
+      padding: 8px 12px;
+      background: #eee;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .part:hover {
+      background: #ddd;
+    }
+
+    .active {
+      background: #4CAF50;
+      color: white;
+    }
+
+    h3 {
+      margin-top: 15px;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <h1>テスト</h1>
+
+    <textarea id="textInput" readonly></textarea><br>
+    <button id="playButton">再生</button>
+    <button onclick="textInput.value=''">クリア</button>
+    <button onclick="undo()">1つ削除</button>
+
+    <div id="status"></div>
+    <div id="missing"></div>
+
+    <h2>パーツ選択</h2>
+    <div id="categoryButtons"></div>
+    <div id="partsList"></div>
+
+    <h3 id="subTitle"></h3>
+    <div id="subParts"></div>
+
+    <script>
+    // ===== 音声マップ =====
+    const charMap = {
+      //基本
+      "本日も": "parts/kihon/本日も_t.wav",
+      "JR東日本をご利用くださいまして": "parts/kihon/JR東日本をご利用くださいまして_t.wav",
+      "ありがとうございます": "parts/kihon/ありがとうございます_t.wav",
+      "おはようございます": "parts/kihon/おはようございます_t.wav",
+      "今度の": "parts/kihon/今度の_t.wav",
+      "列車は": "parts/kihon/列車は_t.wav",
+      "行きです": "parts/kihon/行きです_t.wav",
+      "まもなく": "parts/kihon/まもなく_t.wav",
+      "行きが": "parts/kihon/行きが_t.wav",
+      "参ります": "parts/kihon/参ります_t.wav",
+      "危ないですから": "parts/kihon/危ないですから_t.wav",
+      "危ないですから(旧)": "parts/kihon/危ないですから(旧)_t.wav",
+      "黄色い線まで": "parts/kihon/黄色い線まで_t.wav",
+      "黄色い点字ブロックまで": "parts/kihon/黄色い点字ブロックまで_t.wav",
+      "お下がりください": "parts/kihon/お下がりください_t.wav",
+      //番線
+      "1番線に": "parts/bansen/1番線に_t.wav",
+      "2番線に": "parts/bansen/2番線に_t.wav",
+      "3番線に": "parts/bansen/3番線に_t.wav",
+      "4番線に": "parts/bansen/4番線に_t.wav",
+      "5番線に": "parts/bansen/5番線に_t.wav",
+      "6番線に": "parts/bansen/6番線に_t.wav",
+      "7番線に": "parts/bansen/7番線に_t.wav",
+      "8番線に": "parts/bansen/8番線に_t.wav",
+      "9番線に": "parts/bansen/9番線に_t.wav",
+      "10番線に": "parts/bansen/10番線に_t.wav",
+      "11番線に": "parts/bansen/11番線に_t.wav",
+      "12番線に": "parts/bansen/12番線に_t.wav",
+      "14番線に": "parts/bansen/14番線に_t.wav",
+      "15番線に": "parts/bansen/15番線に_t.wav",
+      "16番線に": "parts/bansen/16番線に_t.wav",
+      //種別
+      "普通": "parts/syubetsu_aisyo/普通_t.wav",
+      "各駅停車": "parts/syubetsu_aisyo/各駅停車_t.wav",
+      "快速": "parts/syubetsu_aisyo/快速_t.wav",
+      "特別快速": "parts/syubetsu_aisyo/特別快速_t.wav",
+      "青梅特快": "parts/syubetsu_aisyo/青梅特快_t.wav",
+      "中央特快": "parts/syubetsu_aisyo/中央特快_t.wav",
+      "通勤快速": "parts/syubetsu_aisyo/通勤快速_t.wav",
+      "通勤特快": "parts/syubetsu_aisyo/通勤特快_t.wav",
+      "特別急行": "parts/syubetsu_aisyo/特別急行_t.wav",
+      "特急": "parts/syubetsu_aisyo/特急_t.wav",
+      "L特急": "parts/syubetsu_aisyo/L特急_t.wav",
+      "寝台特急": "parts/syubetsu_aisyo/寝台特急_t.wav",
+      //行先
+      "赤羽": "parts/ikisaki/tantai/赤羽_t.wav",
+      "赤羽行きです": "parts/ikisaki/yokoku/赤羽行きです_t.wav",
+      "赤羽行きが参ります": "parts/ikisaki/sekkin/赤羽行きが参ります_t.wav",
+      "熱海": "parts/ikisaki/tantai/熱海_t.wav",
+      "熱海行きです": "parts/ikisaki/yokoku/熱海行きです_t.wav",
+      "熱海行きが参ります": "parts/ikisaki/sekkin/熱海行きが参ります_t.wav",
+      "我孫子": "parts/ikisaki/tantai/我孫子_t.wav",
+      "我孫子行きです": "parts/ikisaki/yokoku/我孫子行きです_t.wav",
+      "我孫子行きが参ります": "parts/ikisaki/sekkin/我孫子行きが参ります_t.wav",
+
+      "愛子行きです": "parts/ikisaki/yokoku/愛子行きです_t.wav",
+      "愛子行きが参ります": "parts/ikisaki/sekkin/愛子行きが参ります_t.wav",
+      "綾瀬": "parts/ikisaki/tantai/綾瀬_t.wav",
+      "綾瀬行きです": "parts/ikisaki/yokoku/綾瀬行きです_t.wav",
+
+
+      "安房鴨川行きです": "parts/ikisaki/yokoku/安房鴨川行きです_t.wav",
+      "安房鴨川行きが参ります": "parts/ikisaki/sekkin/安房鴨川行きが参ります_t.wav",
+      "池袋": "parts/ikisaki/tantai/池袋_t.wav",
+      "池袋行きです": "parts/ikisaki/yokoku/池袋行きです_t.wav",
+      "池袋行きが参ります": "parts/ikisaki/sekkin/池袋行きが参ります_t.wav",
+      //両数
+      "1両には": "parts/door_ryosuu/ryoniwa/1両には_t.wav"
+    };
+
+    // ===== カテゴリ =====
+    const categories = {
+      "基本パーツ": [
+        "本日もJR東日本をご利用くださいましてありがとうございます" ,"おはようございます", "今度の", "列車は", "行きです","まもなく", "行きが", "参ります", "危ないですから(旧)",
+        "危ないですから", "黄色い線まで","黄色い点字ブロックまで", "お下がりください"
+      ],
+      "番線パーツ": [
+        "1番線に", "2番線に", "3番線に", "4番線に","5番線に", "6番線に", "7番線に","8番線に",
+        "9番線に", "10番線に","11番線に", "12番線に","14番線に", "15番線に", "16番線に"
+      ],
+      "種別パーツ": ["普通","各駅停車", "快速", "特別快速","青梅特快","中央特快","通勤快速","通勤特快","特別急行", "特急","L特急","寝台特急"],
+      "行先パーツ": ["dummy"], // ←ダミー（使わない）
+      "両数パーツ": ["1両には"]
+    };
+
+    // ===== 路線ごとの行先 =====
+    const routeDestinations = {
+      "内房線": ["安房鴨川"],
+      "宇都宮線": ["赤羽"],
+      "埼京線": ["池袋"],
+      "常磐線": ["綾瀬","我孫子"],
+      "外房線": ["安房鴨川"],
+      "東海道線": ["熱海"],
+      "山手線": ["池袋"],
+      "東北地区":["愛子"]
+    };
+
+    const suffixes = {
+      "単体": "",
+      "予告": "行きです",
+      "接近": "行きが参ります"
+    };
+
+    const textInput = document.getElementById("textInput");
+    const partsList = document.getElementById("partsList");
+    const subParts = document.getElementById("subParts");
+    const subTitle = document.getElementById("subTitle");
+    const categoryButtons = document.getElementById("categoryButtons");
+
+    let selectedDestination = "";
+
+    // ===== カテゴリボタン =====
+    for (const category in categories) {
+      const btn = document.createElement("button");
+      btn.textContent = category;
+
+      btn.onclick = () => {
+        document.querySelectorAll("#categoryButtons button")
+          .forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        showParts(category);
+      };
+
+      categoryButtons.appendChild(btn);
+    }
+
+    // ===== メイン表示 =====
+    function showParts(category) {
+      partsList.innerHTML = "";
+      subParts.innerHTML = "";
+      subTitle.textContent = "";
+
+      if (category === "行先パーツ") {
+        showRoutes();
+        return;
+      }
+
+      categories[category].forEach(text => {
+        const div = document.createElement("div");
+        div.textContent = text;
+        div.className = "part";
+
+        div.onclick = () => {
+          textInput.value += text + "、";
+        };
+
+        partsList.appendChild(div);
+      });
+    }
+
+    // ===== 路線選択 =====
+    function showRoutes() {
+      partsList.innerHTML = "";
+      subTitle.textContent = "路線を選択";
+
+      for (const route in routeDestinations) {
+        const div = document.createElement("div");
+        div.textContent = route;
+        div.className = "part";
+
+        div.onclick = () => {
+          showDestinations(route);
+        };
+
+        partsList.appendChild(div);
+      }
+    }
+
+    // ===== 行先選択 =====
+    function showDestinations(route) {
+      partsList.innerHTML = "";
+      subTitle.textContent = route + "の行先";
+
+      routeDestinations[route].forEach(dest => {
+        const div = document.createElement("div");
+        div.textContent = dest;
+        div.className = "part";
+
+        div.onclick = () => {
+          selectedDestination = dest;
+          showSubParts();
+        };
+
+        partsList.appendChild(div);
+      });
+    }
+
+    // ===== 行先種類 =====
+    function showSubParts() {
+      subParts.innerHTML = "";
+      subTitle.textContent = "行先の種類";
+
+      for (const label in suffixes) {
+        const div = document.createElement("div");
+        div.textContent = label;
+        div.className = "part";
+
+        div.onclick = () => {
+          const fullText = selectedDestination + suffixes[label];
+          textInput.value += fullText + "、";
+        };
+
+        subParts.appendChild(div);
+      }
+    }
+
+    // 初期表示
+    showParts("基本パーツ");
+    document.querySelector("#categoryButtons button").classList.add("active");
+
+    // ===== 再生処理 =====
+    const playButton = document.getElementById('playButton');
+    const statusEl = document.getElementById('status');
+    const missingEl = document.getElementById('missing');
+
+    let isPlaying = false;
+
+    playButton.addEventListener('click', () => {
+      if (isPlaying) return;
+
+      const raw = textInput.value;
+      if (!raw) {
+        statusEl.textContent = '文字を入力してください。';
+        return;
+      }
+
+      missingEl.textContent = "";
+
+      const parts = raw.split(/[、。]/).filter(p => p.trim() !== "");
+      const queue = [];
+      const missing = new Set();
+
+      const keys = Object.keys(charMap).sort((a, b) => b.length - a.length);
+
+      for (const part of parts) {
+        let i = 0;
+        while (i < part.length) {
+          let matched = false;
+
+          for (const key of keys) {
+            if (part.startsWith(key, i)) {
+              queue.push(charMap[key]);
+              i += key.length;
+              matched = true;
+              break;
+            }
+          }
+
+          if (!matched) {
+              let rest = part.slice(i);
+
+              // できるだけ長く一致しそうなところまで探す
+              let found = false;
+              for (let j = rest.length; j > 0; j--) {
+              let sub = rest.slice(0, j);
+          if (Object.keys(charMap).some(k => k.startsWith(sub))) {
+              missing.add(rest);
+              found = true;
+              break;
+    }
+  }
+
+  if (!found) {
+    missing.add(rest);
+  }
+  break;
+}
+        }
+      }
+
+      if (missing.size > 0) {
+        missingEl.textContent = "不足パーツ: " + Array.from(missing).join(" / ");
+      }
+
+      if (queue.length === 0) {
+        statusEl.textContent = '再生できる音声がありません。';
+        return;
+      }
+
+      isPlaying = true;
+      statusEl.textContent = '再生中…';
+
+      const playNext = () => {
+        if (queue.length === 0) {
+          isPlaying = false;
+          statusEl.textContent = '再生完了。';
+          return;
+        }
+
+        const audio = new Audio(queue.shift());
+        audio.onended = playNext;
+        audio.onerror = playNext;
+        audio.play();
+      };
+
+      playNext();
+    });
+
+    // ===== 1つ削除 =====
+    function undo() {
+      let text = textInput.value.trim();
+      let parts = text.split("、").filter(p => p !== "");
+      parts.pop();
+      textInput.value = parts.length ? parts.join("、") + "、" : "";
+    }
+  </script>
+
+  </body>
+</html>

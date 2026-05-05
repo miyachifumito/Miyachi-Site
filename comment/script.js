@@ -1,4 +1,4 @@
-const apiUrl = "https://script.google.com/macros/s/AKfycbzP3xNDpVBGIS6wOjenmSrMgpcDUh9Hu2M-xVa5BwiIT1pswX7kvGVTMr8xSSRSCXw-gw/exec";
+const apiUrl = "https://script.google.com/macros/s/AKfycbwpDe-ezwT7uDe3k59X08bhEVZaonwv7VAGEmKNKJ1FvLZVMifWg6j-qFPoM0kDzv20jA/exec";
 
 function doPost(e) {
   const sheetUsers = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("users");

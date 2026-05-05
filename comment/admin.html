@@ -9,7 +9,13 @@
 
 <header>管理者返信画面</header>
 
-<div class="container">
+<div class="container" id="adminLoginBox">
+    <h2>管理者認証</h2>
+    <input type="password" id="adminPass" placeholder="管理者パスワード">
+    <button onclick="adminLogin()">入室</button>
+</div>
+
+<div class="container" id="adminPanel" style="display:none;">
     <h2>全投稿管理</h2>
     <div id="adminArea"></div>
 </div>

@@ -1,4 +1,4 @@
-name: Deploy static site to GitHub Pages
+name: Force Deploy GitHub Pages
 
 on:
   push:
@@ -11,18 +11,16 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: github-pages-force
   cancel-in-progress: true
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     timeout-minutes: 30
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -36,6 +34,5 @@ jobs:
         with:
           path: '.'
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy
         uses: actions/deploy-pages@v4

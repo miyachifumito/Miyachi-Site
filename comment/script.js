@@ -7,19 +7,15 @@ function register(){
 
     fetch(apiUrl,{
         method:"POST",
-        headers:{
-            "Content-Type":"application/x-www-form-urlencoded"
-        },
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
         body:`action=register&mail=${encodeURIComponent(mail)}&nickname=${encodeURIComponent(nickname)}&password=${encodeURIComponent(password)}`
     })
     .then(res=>res.json())
     .then(data=>{
         if(data.status==="success"){
             alert("登録成功");
-        }else if(data.status==="exists"){
-            alert("このメールは既に登録されています");
         }else{
-            alert("エラー："+data.message);
+            alert("このメールアドレスは登録済みです");
         }
     });
 }
@@ -30,9 +26,7 @@ function login(){
 
     fetch(apiUrl,{
         method:"POST",
-        headers:{
-            "Content-Type":"application/x-www-form-urlencoded"
-        },
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
         body:`action=login&mail=${encodeURIComponent(mail)}&password=${encodeURIComponent(password)}`
     })
     .then(res=>res.json())
@@ -47,6 +41,11 @@ function login(){
     });
 }
 
+function logout(){
+    localStorage.clear();
+    location.href="index.html";
+}
+
 function sendComment(){
     const mail = localStorage.getItem("mail");
     const nickname = localStorage.getItem("nickname");
@@ -54,20 +53,61 @@ function sendComment(){
 
     fetch(apiUrl,{
         method:"POST",
-        headers:{
-            "Content-Type":"application/x-www-form-urlencoded"
-        },
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
         body:`action=comment&mail=${encodeURIComponent(mail)}&nickname=${encodeURIComponent(nickname)}&message=${encodeURIComponent(message)}`
     })
     .then(res=>res.json())
     .then(data=>{
-        if(data.status==="success"){
-            alert("送信完了");
-            document.getElementById("message").value="";
-            loadComments();
-        }else{
-            alert("送信失敗");
-        }
+        alert("送信完了");
+        document.getElementById("message").value="";
+        loadComments();
+    });
+}
+
+function deleteMyComment(id){
+    const mail = localStorage.getItem("mail");
+
+    fetch(apiUrl,{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:`action=deleteComment&id=${id}&mail=${encodeURIComponent(mail)}`
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        alert("削除しました");
+        loadComments();
+    });
+}
+
+function userReply(id){
+    const txt = prompt("管理者への返信を入力");
+    if(!txt) return;
+
+    fetch(apiUrl,{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:`action=userReply&id=${id}&reply=${encodeURIComponent(txt)}`
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        alert("返信しました");
+        loadComments();
+    });
+}
+
+function adminReply(id){
+    const txt = prompt("管理者返信を入力");
+    if(!txt) return;
+
+    fetch(apiUrl,{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:`action=adminReply&id=${id}&reply=${encodeURIComponent(txt)}`
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        alert("返信完了");
+        loadAdminComments();
     });
 }
 
@@ -77,15 +117,65 @@ function loadComments(){
     .then(data=>{
         const area = document.getElementById("commentsArea");
         area.innerHTML = "";
+        const myMail = localStorage.getItem("mail");
 
         data.reverse().forEach(c=>{
-            area.innerHTML += `
-                <div class="comment-box">
-                    <b>${c.nickname}</b><br>
-                    ${c.message}<br>
-                    <small>${c.date}</small>
-                </div>
+            let html = `
+            <div class="comment-box">
+                <b>${c.nickname}</b><br>
+                ${c.message}<br>
+                <small>${c.date}</small><br>
             `;
+
+            if(c.mail === myMail){
+                html += `<button class="small-btn" onclick="deleteMyComment('${c.id}')">削除</button>`;
+            }
+
+            if(c.adminReply){
+                html += `<div class="reply-box"><b>管理者返信:</b><br>${c.adminReply}</div>`;
+            }
+
+            if(c.adminReply && !c.userReply && c.mail === myMail){
+                html += `<button class="small-btn" onclick="userReply('${c.id}')">返信する</button>`;
+            }
+
+            if(c.userReply){
+                html += `<div class="reply-box"><b>あなたの返信:</b><br>${c.userReply}</div>`;
+            }
+
+            html += `</div>`;
+            area.innerHTML += html;
+        });
+    });
+}
+
+function loadAdminComments(){
+    fetch(apiUrl)
+    .then(res=>res.json())
+    .then(data=>{
+        const area = document.getElementById("adminArea");
+        area.innerHTML = "";
+
+        data.reverse().forEach(c=>{
+            let html = `
+            <div class="comment-box">
+                <b>${c.nickname}</b> (${c.mail})<br>
+                ${c.message}<br>
+                <small>${c.date}</small><br>
+            `;
+
+            if(c.adminReply){
+                html += `<div class="reply-box"><b>管理者返信:</b><br>${c.adminReply}</div>`;
+            }else{
+                html += `<button class="small-btn" onclick="adminReply('${c.id}')">返信する</button>`;
+            }
+
+            if(c.userReply){
+                html += `<div class="reply-box"><b>ユーザー再返信:</b><br>${c.userReply}</div>`;
+            }
+
+            html += `</div>`;
+            area.innerHTML += html;
         });
     });
 }
@@ -95,5 +185,9 @@ window.onload = function(){
         const nick = localStorage.getItem("nickname");
         document.getElementById("welcome").innerText = nick + " さんでログイン中";
         loadComments();
+    }
+
+    if(document.getElementById("adminArea")){
+        loadAdminComments();
     }
 }

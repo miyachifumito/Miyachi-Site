@@ -1,4 +1,4 @@
-name: Force Deploy GitHub Pages
+name: Hard Reset Pages Deploy
 
 on:
   push:
@@ -9,9 +9,10 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  deployments: write
 
 concurrency:
-  group: github-pages-force
+  group: pages-reset
   cancel-in-progress: true
 
 jobs:
@@ -19,20 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
-    environment:
-      name: github-pages
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Deploy
+      - name: Deploy Pages
         uses: actions/deploy-pages@v4

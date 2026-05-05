@@ -1,0 +1,3 @@
+jobs:
+  {job_name}:
+    timeout-minutes: 10

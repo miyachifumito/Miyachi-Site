@@ -5,10 +5,146 @@
         <meta charset="UTF-8">
         <title>更新履歴</title>
     </head>
+    <style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:30px;
+    font-family:"Segoe UI","Yu Gothic",sans-serif;
+    background:linear-gradient(to bottom,#eef3f8,#dfe7ef);
+    color:#222;
+}
+
+h1{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:40px;
+    color:#1f2d3d;
+    text-shadow:0 2px 4px rgba(0,0,0,0.1);
+}
+
+details{
+    max-width:900px;
+    margin:20px auto;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    transition:.2s;
+}
+
+details:hover{
+    transform:translateY(-2px);
+}
+
+summary{
+    cursor:pointer;
+    padding:16px 24px;
+    font-size:26px;
+    font-weight:bold;
+    list-style:none;
+    user-select:none;
+    color:white;
+    background:linear-gradient(90deg,#008c55,#00a86b);
+}
+
+summary::-webkit-details-marker{
+    display:none;
+}
+
+summary::after{
+    content:"＋";
+    float:right;
+    font-size:28px;
+}
+
+details[open] summary::after{
+    content:"－";
+}
+
+h3{
+    max-width:750px;
+    margin:25px auto 10px;
+    padding-left:15px;
+    border-left:5px solid #008c55;
+    text-align:left;
+    color:#008c55;
+    font-size:22px;
+}
+
+ul{
+    max-width:750px !important;
+    margin:0 auto 25px !important;
+    padding:18px 25px 18px 45px;
+    background:#f8fafc;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+}
+
+li{
+    margin:8px 0;
+    line-height:1.7;
+}
+
+a{
+    color:#0066cc;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.back{
+    text-align:center;
+    margin:50px 0 20px;
+}
+
+.back a{
+    display:inline-block;
+    background:#008c55;
+    color:white;
+    padding:12px 30px;
+    border-radius:8px;
+    transition:.2s;
+}
+
+.back a:hover{
+    background:#006f44;
+    text-decoration:none;
+}
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    summary{
+        font-size:22px;
+    }
+
+    h3{
+        font-size:18px;
+    }
+
+    ul{
+        width:auto !important;
+    }
+}
+</style>
     <body style="text-align: center;">
         <h1>更新履歴</h1>
         <details name="history">
-            <summary style="background-color: antiquewhite; font-size: larger;">2025/12</summary>
+            <summary>2025/12</summary>
             <h3>/31</h3>
             <p>
                 <ul style="margin: auto; width: 500px; text-align: left;">
@@ -21,7 +157,7 @@
             </p>
         </details>
         <details name="history">
-            <summary style="background-color:gainsboro; font-size: larger;">2026/01</summary>
+            <summary>2026/01</summary>
             <h3>/01</h3>
             <ul style="margin: auto; width: 500px; text-align: left;">
                 <li>横須賀・総武線のページを作成</li>
@@ -83,7 +219,7 @@
             </ul>
         </details>
         <details name="history">
-            <summary style="background-color: antiquewhite; font-size: larger;">2026/02</summary>
+            <summary>2026/02</summary>
             <h3>/01</h3>
             <ul style="margin: auto; width: 500px; text-align: left;">
                 <li>過去各駅現況の2004年を更新</li>
@@ -127,7 +263,7 @@
             </ul>
         </details>
         <details name="history">
-            <summary style="background-color: gainsboro; font-size: larger;">2026/03</summary>
+            <summary>2026/03</summary>
             <h3>/08</h3>
             <ul style="margin: auto; width: 500px; text-align: left;">
                 <li>西千葉駅のページを作成・音声を追加</li>
@@ -187,7 +323,7 @@
             </ul>
         </details>
         <details name="history">
-            <summary style="background-color: antiquewhite; font-size: larger;">2026/04</summary>
+            <summary>2026/04</summary>
             <h3>/03</h3>
             <ul style="margin: auto; width: 500px; text-align: left;">
                 <li>パーツ集-行先に音声を追加</li>
@@ -261,7 +397,7 @@
             </ul>
         </details>
         <details name="history">
-            <summary style="background-color: gainsboro; font-size: larger;">2026/05</summary>
+            <summary>2026/05</summary>
             <h3>/01</h3>
             <ul style="margin: auto; width: 500px; text-align: left;">
                 <li>パーツ集-行先に中央線関連(東京～高尾)の音声を追加</li>
@@ -329,7 +465,7 @@
             </ul>
         </details>
         <details name="history">
-            <summary style="background-color: antiquewhite; font-size: larger;">2026/06</summary>
+            <summary>2026/06</summary>
             <h3>/01</h3>
             <ul style="margin: auto; width: 500px; text-align: left;">
                 <li>山手線と京浜東北線の品川駅のページを作成</li>
@@ -378,6 +514,17 @@
                 <li>南与野・大宮駅のページを作成</li>
             </ul>
         </details>
-        <p><a href="../index.html">トップページに戻る</a></p>
+        <details name="history">
+            <summary>2026/07</summary>
+            <h3>/01</h3>
+            <ul style="margin: auto; width: 500px; text-align: left;">
+                <li>トップページのデザインを変更</li>
+                <li>このページのデザインを変更</li>
+                <li>過去各駅現況の一部ページを変更</li>
+            </ul>
+        </details>
+        <div class="back">
+    <a href="../index.html">トップページに戻る</a>
+</div>
     </body>
 </html>

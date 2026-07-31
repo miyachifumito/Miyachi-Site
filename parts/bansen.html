@@ -4,6 +4,139 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>パーツ集-番線</title>
+        <style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#dfe7ef;
+    color:#000;
+    font-family:
+        "Yu Gothic UI",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+    font-size:14px;
+}
+
+
+/* タイトル */
+h1{
+    width:1100px;
+    margin:20px auto 10px;
+    padding:10px;
+    text-align:center;
+    color:white;
+    background:linear-gradient(to bottom,#33ccff,#0088cc);
+    border:1px solid #006699;
+    font-size:30px;
+}
+
+
+/* 戻るリンク */
+body > p{
+    width:1100px;
+    margin:10px auto;
+    text-align:center;
+    background:white;
+    border:1px solid #999;
+    padding:8px;
+}
+
+body > p a{
+    color:#0000cc;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+
+/* 表 */
+table{
+    width:1100px;
+    margin:10px auto;
+    border-collapse:collapse;
+    background:white;
+    border:2px solid #555;
+}
+
+
+/* セル */
+th,
+td{
+    border:1px solid #999;
+    padding:5px;
+    text-align:center;
+    white-space:nowrap;
+}
+
+
+
+/* 1行目（声優名） */
+tr:first-child th{
+    background:#0066cc;
+    color:white;
+    font-size:18px;
+}
+
+
+/* 2行目 */
+tr:nth-child(2) td{
+    background:#eeeeee;
+    font-weight:bold;
+}
+
+
+
+/* 番線番号 */
+tr th:first-child{
+    background:#ffffcc;
+    font-weight:bold;
+}
+
+
+/* 行の色 */
+tr:nth-child(even){
+    background:#f8fbff;
+}
+
+
+tr:hover{
+    background:#ffff99;
+}
+
+
+
+/* 音声リンク */
+a{
+    color:#0000cc;
+    text-decoration:underline;
+}
+
+
+td a{
+    display:inline-block;
+    padding:1px 6px;
+    background:#eeeeee;
+    border:1px solid #777;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+
+td a:hover{
+    background:#ffff66;
+    color:red;
+}
+
+
+
+/* 横幅対策 */
+body{
+    min-width:1150px;
+}
+
+
+</style>
     </head>
     <body>
         <h1 style="background-color:deepskyblue">パーツ集-番線</h1>
@@ -20,7 +153,7 @@
                 }
             </style>
                 <tr>
-                    <th id="a" rowspan="2">番線</th>
+                    <th id="a" rowspan="2" style="color: black;">番線</th>
                     <th id="b" colspan="5">向山佳比子</th>
                     <th id="b" colspan="5">津田英治</th>
                     <th id="b" colspan="5">田中一永</th>

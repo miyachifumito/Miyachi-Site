@@ -6,72 +6,110 @@
     <title>パーツ集</title>
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #f2f2f2;
-            font-family: "Yu Gothic", sans-serif;
-            color: #333;
-        }
+        *{
+    box-sizing:border-box;
+}
 
-        h1 {
-            background: #ffffff;
-            padding: 20px;
-            margin: 0;
-            border-bottom: 2px solid #dcdcdc;
-            font-size: 28px;
-            text-align: center;
-        }
+body{
+    margin:0;
+    padding:0;
+    background:#dfe7ef;
+    color:#000;
+    font-family:"MS PGothic","ＭＳ Ｐゴシック","Yu Gothic",sans-serif;
+    font-size:14px;
+    line-height:1.6;
+}
 
-        .back-link {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 16px;
-        }
+h1{
+    width:960px;
+    margin:20px auto 10px;
+    padding:10px;
+    background:linear-gradient(to bottom,#4fa0ff,#0066cc);
+    color:#ffffff;
+    text-align:center;
+    font-size:30px;
+    border:1px solid #003399;
+}
 
-        .back-link a {
-            color: #0066cc;
-            text-decoration: none;
-        }
+.back-link{
+    width:960px;
+    margin:0 auto 10px;
+    text-align:center;
+    padding:8px;
+    background:#ffffff;
+    border:1px solid #999999;
+}
 
-        .back-link a:hover {
-            text-decoration: underline;
-        }
+.back-link a{
+    color:#0000ff;
+    text-decoration:underline;
+    font-weight:bold;
+}
 
-        .container {
-            width: 95%;
-            max-width: 900px;
-            margin: auto;
-        }
+.back-link a:hover{
+    color:#ff0000;
+}
 
-        .item-box {
-            background: #ffffff;
-            border: 1px solid #d0d0d0;
-            padding: 15px 20px;
-            margin: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-        }
+.container{
+    width:960px;
+    margin:0 auto;
+    background:#ffffff;
+    border:1px solid #999999;
+    padding:10px;
+}
 
-        .item-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
+.item-box{
+    background:#ffffff;
+    border:1px solid #999999;
+    margin:8px 0;
+    padding:10px;
+    box-shadow:none;
+}
 
-        .item-title a {
-            color: #0066cc;
-            text-decoration: none;
-        }
+.item-box:hover{
+    background:#eef5ff;
+}
 
-        .item-title a:hover {
-            text-decoration: underline;
-        }
+.item-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
 
-        .item-desc {
-            font-size: 15px;
-            font-weight: 600;
-            color: #444;
-        }
+.item-title a{
+    color:#0000cc;
+    text-decoration:underline;
+}
+
+.item-title a:hover{
+    color:#ff0000;
+}
+
+.item-desc{
+    font-size:14px;
+    color:#333333;
+}
+
+@media(max-width:1000px){
+
+    h1,
+    .back-link,
+    .container{
+        width:95%;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    .item-title{
+        font-size:16px;
+    }
+
+    .item-desc{
+        font-size:13px;
+    }
+}
     </style>
 </head>
 

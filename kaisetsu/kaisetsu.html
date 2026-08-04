@@ -4,6 +4,122 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>解説</title>
+        <style>
+body{
+    font-family:"Yu Gothic UI","Yu Gothic","Meiryo",sans-serif;
+    font-size:16px;
+    line-height:1.8;
+    background:#ffffff;
+    color:#000;
+    margin:15px;
+}
+
+/* タイトル */
+h1{
+    background:#cc0000;
+    color:white;
+    padding:8px 12px;
+    border:2px solid #990000;
+    margin-bottom:20px;
+}
+
+/* 大見出し */
+h2{
+    background:#808080;
+    color:white;
+    padding:6px 10px;
+    border:1px solid #555;
+    margin-top:40px;
+}
+
+/* 小見出し */
+h3{
+    color:white;
+    padding:5px 10px;
+    border:1px solid #333;
+    margin-top:30px;
+}
+
+/* 本文 */
+p{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+/* 目次 */
+ul,ol{
+    background:#f7f7f7;
+    border:1px solid #b0b0b0;
+    padding:15px 35px;
+}
+
+/* リンク */
+a{
+    color:#0000ee;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+a:visited{
+    color:#551a8b;
+}
+
+/* 音声リンク */
+a[href$=".mp3"]{
+    font-weight:bold;
+}
+.honkemae{
+    background:#222;
+}
+
+.shoki{
+    background:#455a64;
+}
+
+.kyu{
+    background:#00838f;
+}
+
+.jobanshoki{
+    background:#2e7d32;
+}
+
+.jobankairyo{
+    background:#1565c0;
+}
+.futai{
+    background-color: lightgrey;
+    color: black;
+}
+
+/* スマホ対応 */
+@media screen and (max-width:768px){
+
+    body{
+        margin:10px;
+        font-size:15px;
+    }
+
+    h1{
+        font-size:1.8em;
+    }
+
+    h2{
+        font-size:1.4em;
+    }
+
+    h3{
+        font-size:1.15em;
+    }
+
+    ul,ol{
+        padding:12px 25px;
+    }
+}
+</style>
     </head>
     <body>
         <h1 style="background-color: red;">解説</h1>
@@ -25,7 +141,7 @@
             <li><span style="color:orangered">宇都宮型</span></li>
             <li><span style="color:darkred">宇都宮改良型</span></li>
         </ol>
-        <h3 style="background-color: black; color: white;" id="honkemae">本家導入前(初期型以前)</h3>
+        <h3 class="honkemae">本家導入前(初期型以前)</h3>
         <p>
             このタイプは主に中央線での導入前でスタンドアローンである駅で使われていました。当サイトでは初期型として扱う。<br>
             文面の例は以下の通りです。(旧宇都宮駅)<br>
@@ -37,7 +153,7 @@
             <a href="sound/honkemae/honkemae_sample5.mp3">♪(接近放送)</a>「♪まもなく、9番、線に、列車が、参ります。ご注意ください。」(旧大宮駅)<br>
             このころはまだ男性の設定は不可であり、向山佳衣子氏のみで放送されていました。
         </p>
-        <h3 style="background-color: darkslategrey; color: white;" id="shoki">初期型</h3>
+        <h3 class="shoki">初期型</h3>
         <p>
             このタイプは中央線などで導入を開始した際の放送で、最初は男性を設定することはできなかったが、のちに<a href="sound/shoki/tsudaeiji_sample.mp3">♪(津田英治氏による放送){旧新宿駅}</a>が流れるようになった。<br>
             この初期型まで、行先パーツが「<a href="sound/shoki/tokyo_tsugihagi.mp3">♪(東京、行きが、参ります)</a>」と継ぎ接ぎになっていたが1999年に入ったころから「<a href="sound/shoki/tokyo_hitotuzuki.mp3">♪(東京行きが参ります)</a>」といういわゆる一続きパーツが追加されました。到着放送も現在とは違い、向山佳衣子氏のみ設定可能で、1回目は伸ばし、2回目は行先単体パーツが付くという昔っぽい放送となっていました。終着放送には「終点」パーツが付いていました。また、両数案内には「編成です」パーツが使用されていました。<br>
@@ -47,7 +163,7 @@
             <a href="sound/shoki/shoki_sample3.mp3">♪(接近放送)</a>「♪まもなく、3番、線に、普通、松本行きが参ります。危ないですから、黄色い線の内側まで、お下がりください。」(旧大月駅)<br>
             <a href="sound/shoki/shoki_sample4.mp3">♪(次発予告放送)</a>「本日も、ご利用いただきまして、ありがとうございます。今度の、1番、線の、10、5時、10、4分、発、普通、甲府、行きです。この、列車は、3両、<span style="color: red;">編成です</span>。」(旧石和温泉駅)
         </p>
-        <h3 style="background-color: darkcyan; color: white;" id="kyu">旧型</h3>
+        <h3 class="kyu">旧型</h3>
         <p>
             このタイプは横須賀線・東海道線導入当たりからの放送を指します。初導入は戸塚駅で、「<a href="sound/kyu/kiiroisen_sample.mp3">♪(危ないですから、黄色い線まで、お下がりください。)</a>」という文面が初めて使用されました。このころの到着放送は伸ばさないことが多いです。「です」パーツも付きません。両数案内は一続きパーツになりました。<br>
             文面の例は以下の通りです。(旧小田原駅)<br>
@@ -55,7 +171,7 @@
             <a href="sound/kyu/kyuu_sample2.mp3">♪(終着放送)</a>「小田原、小田原、本日も、ご利用いただきまして、ありがとうございました。お忘れ物の無いよう、ご注意ください。この、列車には、ご乗車になれませんので、ご注意ください。真鶴、湯河原、熱海方面は、3番、線、東海道新幹線、小田急線、箱根登山線、大雄山線、は、お乗り換えです。」<br>
             <a href="sound/kyu/kyuu_sample3.mp3">♪(到着放送)</a>「戸塚～、戸塚～、ご乗車、ありがとうございます。」(旧戸塚駅)
         </p>
-        <h3 style="background-color: forestgreen; color: white;"id="jobanshoki">常磐初期型</h3>
+        <h3 class="jobanshoki">常磐初期型</h3>
         <p>
             このタイプは2004年導入の常磐線から使用されている物で、次発予告放送の冒頭の文面と番線パーツが全て録り直され継ぎ接ぎ感が少し減ったのが特徴です。（松戸駅では一時期「本日も、ご利用いただきまして、ありがとうございます。」という文面が使われていた。）導入当初は「<a href="sound/jobanshoki/denshaga_tsugihagi.mp3">♪(電車が、参ります)</a>」や「<a href="sound/jobanshoki/maeyori_tsugihagi.mp3">♪(前寄り、5両、は、土浦、停まりとなります。)</a>」など、今の放送よりも継ぎ接ぎであったが、2004年後期頃から「<a href="sound/jobanshoki/denshaga_hitotuzuki.mp3">♪(電車が参ります)</a>」、「<a href="sound/jobanshoki/maeyori_hitotsuzuki.mp3">♪(前寄り、5両は、土浦、停まりとなります。)</a>」とパーツが新しく録り直されています。また、「特別急行」から「特急」パーツに変更されたのもこの時期です。この放送の「グリーン車が付いております」パーツはこれ以降の物とは別パーツです。男性による次発予告放送、出発予告放送、到着放送、終着放送がこのタイプから追加されました。<br>
             文面の例は以下の通りです。<br>
@@ -64,7 +180,7 @@
             <a href="sound/jobanshoki/jobanshoki_sample3.mp3">♪(次発予告放送)</a>「本日も、ご利用いただきまして、ありがとうございます。今度の、1番線の、列車は、10、1時、20分、発、普通、土浦、行きです。この列車は、15両です。グリーン車が付いております。」(旧松戸駅)<br>
             <a href="sound/jobanshoki/jobanshoki_sample4.mp3">♪(終着放送)</a>「土浦～、土浦～、本日も、JR東日本をご利用くださいまして、ありがとうございました。お忘れ物の無いよう、ご注意ください。この列車には、ご乗車になれませんので、ご注意ください。」(旧土浦)
         </p>
-        <h3 style="background-color: blue; color: white;"id="jobankairyo">常磐改良型</h3>
+        <h3 class="jobankairyo">常磐改良型</h3>
         <p>
             2005年の埼京線ATOS化の時に登場しました。次発予告放送の「<a href="sound/jobankairyo/ikidesu_tsugihagi.mp3">♪(大宮、行きです。)</a>」が「<a href="sound/jobankairyo/ikidesu_hitotuzuki.mp3">♪(大宮行きです。)</a>」へ一続きパーツに変更されました。この放送は、武蔵野線ATOS化まで使われ、それ以降の、横浜線ATOS化以降は、宇都宮型放送が使用されているため、津田英治氏による最後のタイプとなります。このタイプからさらに付帯の数が増えました。<br>
             文面の例は以下の通りです。<br>
@@ -96,39 +212,39 @@
             <li><a href="#contacting">連絡案内</a></li>
             <li><a href="#last">最終案内</a></li>
         </ul>
-        <h3 id="doors_cars" style="background-color: lightgrey;">ドア数・両数案内</h3>
+        <h3 id="doors_cars" class="futai">ドア数・両数案内</h3>
         <p>文面の一番最初に付くことが多い付帯です。両数のみで案内する場合や、ドア数・両数をどちらも案内する場合、「オール2階建て・2階建て」を付ける場合、「〇ドアです」という付帯を付ける場合に分かれます。</p>
         <ul>
             <li>例1：<a href="sound/futai/この電車は、11両です。.mp3">♪</a>「この電車は、11両です。」</li>
             <li>例2：<a href="sound/futai/この列車は、4つドア、15両です。.mp3">♪</a>「この列車は、4つドア、15両です。」</li>
             <li>例3：<a href="sound/futai/この列車は、オール2階建て、2つドアです。.mp3">♪</a>「この列車は、オール2階建て、2つドアです。」</li>
         </ul>
-        <h3 id="green_true_false" style="background-color: lightgrey;">グリーン車有無案内</h3>
+        <h3 id="green_true_false" class="futai">グリーン車有無案内</h3>
         <p>主にグリーン車が存在する路線の駅によく付帯します。グリーン車が登場時期ではほぼ全ての対象駅で聞くことができました。現在でも聞くことができます。</p>
         <ul>
             <li>例1：<a href="sound/futai/グリーン車が付いております。.mp3">♪</a>「グリーン車が付いております。」</li>
             <li>例2：<a href="sound/futai/グリーン車は付いておりません。.mp3">♪</a>「グリーン車は付いておりません。」</li>
         </ul>
-        <h3 id="stop_pos" style="background-color: lightgrey;">停止位置案内</h3>
+        <h3 id="stop_pos" class="futai">停止位置案内</h3>
         <p>ホームの有効長よりも短い両数で列車が来るときに付くことが多い付帯です。常磐初期型導入以前の駅では「ホームの」というパーツがありませんでした。</p>
         <ul>
             <li>例1：<a href="sound/futai/ホームの、大津港、寄りには停まりません。.mp3">♪</a>「ホームの、大津港、寄りには停まりません。」</li>
             <li>例2：<a href="sound/futai/ホームの、大船寄りには停まりません。.mp3">♪</a>「ホームの、大船寄りには停まりません。」</li>
         </ul>
-        <h3 id="addition_devide" style="background-color: lightgrey;">増結・分割案内</h3>
+        <h3 id="addition_devide" class="futai">増結・分割案内</h3>
         <p>途中駅または、放送が流れている駅で増結・分割などを行う際に付く付帯です。</p>
         <ul>
             <li>例1：<a href="sound/futai/当駅で、後ろ、4両、増結をいたします。.mp3">♪</a>「当駅で、後ろ、4両、増結をいたします。」</li>
             <li>例2：<a href="sound/futai/この列車は、当駅におきまして、勝田、行きと、上野、行きに、分かれます。切り離し、作業を、行いますので、発車まで、しばらくお待ちください。.mp3">♪</a>「この列車は、当駅におきまして、勝田、行きと、上野、行きに、分かれます。切り離し、作業を、行いますので、発車まで、しばらくお待ちください。」</li>
         </ul>
-        <h3 id="separation" style="background-color: lightgrey;">切り離し案内</h3>
+        <h3 id="separation" class="futai">切り離し案内</h3>
         <p>途中駅で切り離して短縮を行う列車に付帯します。旧型時代では「〇〇、停まりとなります」という文面は無く、「途中、〇〇、駅で、切り離しとなります。」という文面でした。</p>
         <ul>
             <li>例1：<a href="sound/futai/この列車の、前寄り、5両は、小金井、停まりとなります。.mp3">♪</a>「この列車の、前寄り、5両は、小金井、停まりとなります。」</li>
             <li>例2：<a href="sound/futai/途中、熱海、駅で、切り離しとなります。.mp3">♪</a>「途中、熱海、駅で、切り離しとなります。」</li>
             <li>例3：<a href="sound/futai/途中、大月、で、後ろ寄り、6両、切り離しとなります。.mp3">♪</a>「途中、大月、で、後ろ寄り、6両、切り離しとなります。」</li>
         </ul>
-        <h3 id="waiting_passing" style="background-color: lightgrey;">待ち合わせ・通過待ち案内</h3>
+        <h3 id="waiting_passing" class="futai">待ち合わせ・通過待ち案内</h3>
         <p>その駅で上級種別の待ち合わせや通過待ちをする列車に付帯します。非連動タイプは連動タイプとは違い、待ち合わせを行う手前の駅で案内するための付帯です。</p>
         <ul>
             <li>例1：<a href="sound/futai/この電車は、快速、川越、行きの、待ち合わせをいたします。.mp3">♪</a>「この電車は、快速、川越、行きの、待ち合わせをいたします。」</li>
@@ -136,19 +252,19 @@
             <li>例3：<a href="sound/futai/待ち合わせ・通過待ち案内3.mp3">♪</a>「この列車は、佐原、で、普通、香取、行きの、待ち合わせをいたします。」(非連動)</li>
         </ul>
         <p>例3に関しては駅員のミスによるご案内だと思われます。</p>
-        <h3 id="waiting_passing" style="background-color: lightgrey;">号車案内</h3>
+        <h3 id="waiting_passing" class="futai">号車案内</h3>
         <p>主に特急などの列車に付くことが多い付帯で、一部駅では普通列車にも付帯が付きます。「自由席は」や「グリーン車は」という文面から始まることもあります。「自由席の禁煙車は」というパーツは全面禁煙ではなかった頃にATOS放送が導入された路線で多く聞けました。</p>
         <ul>
             <li>例1：<a href="sound/futai/前寄り、1号車、2号車、の、順で、一番後ろが、12号車、です。.mp3">♪</a>「前寄り、1号車、2号車、の、順で、一番後ろが、12号車、です。」</li>
             <li>例2：<a href="sound/futai/自由席は、1号車、3号車、5号車、グリーン車は、2号車、6号車、7号車、自由席の禁煙車は、4号車、です。.mp3">♪</a>「自由席は、1号車、3号車、5号車、グリーン車は、2号車、6号車、7号車、自由席の禁煙車は、4号車、です。」</li>
         </ul>
-        <h3 id="riding_condition" style="background-color: lightgrey;">乗車条件案内</h3>
+        <h3 id="riding_condition" class="futai">乗車条件案内</h3>
         <p>全車指定席や全車禁煙が主に使われます。全車禁煙の付帯は現在、全面禁煙のため使われることが無くなっています。</p>
         <ul>
             <li>例1：<a href="sound/futai/この列車は、全車指定席です。.mp3">♪</a>「この列車は、全車指定席です。」</li>
             <li>例2：<a href="sound/futai/この、列車は、全車禁煙です。.mp3">♪</a>「この、列車は、全車禁煙です。」</li>
         </ul>
-        <h3 id="riding_condition" style="background-color: lightgrey;">多数行先案内</h3>
+        <h3 id="riding_condition" class="futai">多数行先案内</h3>
         <p>
             複数の行先が途中で別れる場合にこの付帯が付くことがあります。この付帯の後に<a href="#separation">切り離し案内(途中～)</a>が付く場合は「〇〇、行きとなっております。」から「〇〇、行きと、なっております。」に置き換わる。<br>
             非連動の場合「前寄り～、後（あと）寄り～、です。」という文面となる。稀に最後の「です」が「<span style="color: red;">車両です</span>」となることがある。
@@ -159,7 +275,7 @@
             <li>例3：<a href="sound/futai/多数行先案内3.mp3">♪</a>「水戸寄り、11号車から、15号車は、勝田、行き、です。上野寄り、1号車から、10号車は、品川、行き、です。」(非連動)</li>
             <li>例4：<a href="sound/futai/多数行先案内4.mp3">♪</a>「前寄り、10号車から、7号車は、成東、行き、後寄り、6号車から、1号車は、勝浦、行き、<span style="color: red;">車両です</span>。」(非連動)</li>
         </ul>
-        <h3 id="will_stop_station" style="background-color: lightgrey;">停車駅案内</h3>
+        <h3 id="will_stop_station" class="futai">停車駅案内</h3>
         <p>
             横浜線宇都宮型導入以降のではこの付帯をつけることができ、連動タイプでは文面が固定されていますが12駅まで対応していて、非連動タイプは最大8駅までしか設定できませんが、自由度が高く、「～までの各駅と」や「から先の各駅に停車します」を付けることができます。
         </p>
@@ -174,7 +290,7 @@
             <li>例5：<a href="sound/futai/停車駅案内5.mp3">♪</a>「この電車は、武蔵浦和、まで、武蔵野線内は、各駅に停車します。」</li>
             <li>例6：<a href="sound/futai/停車駅案内6.mp3">♪</a>「この電車は、浜松町、から、田端、まで、快速運転となります。」</li>
         </ul>
-        <h3 id="next_stop_station" style="background-color: lightgrey;">次駅案内</h3>
+        <h3 id="next_stop_station" class="futai">次駅案内</h3>
         <p>
             次に停まる駅の案内をすることができるシンプルな付帯です。「当駅を出ますと」というパーツが付く文面は宇都宮改良型以降で使用することができます。
         </p>
@@ -182,7 +298,7 @@
             <li>例1：<a href="sound/futai/次駅案内1.mp3">♪</a>「次は、栗橋、に、停まります。」</li>
             <li>例2：<a href="sound/futai/次駅案内2.mp3">♪</a>「当駅を出ますと、次は、新川崎、に、停まります。」</li>
         </ul>
-        <h3 id="pass_station" style="background-color: lightgrey;">通過駅案内</h3>
+        <h3 id="pass_station" class="futai">通過駅案内</h3>
         <p>
             その名の通り通過駅を案内します。最大で4駅案内することができます。
         </p>
@@ -190,14 +306,14 @@
             <li>例1：<a href="sound/futai/通過駅案内1.mp3">♪</a>「北戸田、戸田、浮間舟渡、北赤羽、には、停車いたしません。」</li>
             <li>例2：<a href="sound/futai/通過駅案内2.mp3">♪</a>「小田原、まで、停車いたしません。」</li>
         </ul>
-        <h3 id="non-via" style="background-color: lightgrey;">非経由地案内</h3>
+        <h3 id="non-via" class="futai">非経由地案内</h3>
         <p>
             その列車が行かない方面の案内をすることができます。最大で3駅まで設定することができます。
         </p>
         <ul>
             <li>例：<a href="sound/futai/非経由地案内1.mp3">♪</a>「久喜、小山、宇都宮、方面には参りません。」</li>
         </ul>
-        <h3 id="riding_pos" style="background-color: lightgrey;">乗車口案内</h3>
+        <h3 id="riding_pos" class="futai">乗車口案内</h3>
         <p>
             その列車に乗る際、どこで待てば良いかを案内します。主に、「見る場所」→「色」→「列車名」→「両数」→「見る印」→「何号車/何番」のような文面となっている。<br>
             この付帯には様々なパーツが多用されており、全部コンプリートするのは困難となっています。
@@ -208,13 +324,13 @@
             <li>例3：<a href="sound/futai/乗車口案内3.mp3">♪</a>「足元、オレンジ色の、ラベルで、お待ちください。」</li>
             <li>例4：<a href="sound/futai/乗車口案内4.mp3">♪</a>「足元の、緑色、15両、乗車口で、お待ちください。グリーン車は、4番と、5番で、お待ちください。」</li>
         </ul>
-        <h3 id="contacting" style="background-color: lightgrey;">連絡案内</h3>
+        <h3 id="contacting" class="futai">連絡案内</h3>
         <p>優等列車との乗換接続案内や終点からさらにその先へ向かう列車への接続をする列車に付帯します。</p>
         <ul>
             <li>例1：<a href="sound/futai/連絡案内1.mp3">♪</a>「この電車は、武蔵小金井、で、快速、高尾、行きに、連絡します。」</li>
             <li>例2：<a href="sound/futai/連絡案内2.mp3">♪</a>「三鷹駅で、中野、行きの、最終、電車に、連絡します。お乗り遅れの無いように、ご注意ください。」</li>
         </ul>
-        <h3 id="last" style="background-color: lightgrey;">最終案内</h3>
+        <h3 id="last" class="futai">最終案内</h3>
         <p>その列車の向かう先の駅が最終であることを案内します。駅によってはその方面へ向かう最終列車という意味で付帯する駅も存在します。</p>
         <ul>
             <li>例：<a href="sound/futai/最終案内1.mp3">♪</a>「この列車は、弘前、行きの、最終です。」</li>
@@ -229,7 +345,7 @@
             <li><a href="#no_smoking">禁煙案内</a></li>
             <li><a href="#alignment">整列乗車案内</a></li>
         </ul>
-        <h3 id="no_smoking" style="background-color: lightgrey;">禁煙案内</h3>
+        <h3 id="no_smoking" class="futai">禁煙案内</h3>
         <p>
             駅での全面禁煙開始前から一部駅で流れ始めた案内です。<br>
             禁煙タイムの案内はほんの一部駅で使われていたため、結構レアです。常磐型に更新時、「皆様の、ご協力を」が一続きパーツに変更されました。
@@ -240,7 +356,7 @@
             <li>例2-1：<a href="sound/keihatsu/禁煙案内2.mp3">♪</a>「当駅では、7時、丁度、から、9時、丁度、まで、禁煙タイムと、なっております。皆様の、ご協力を、お願いいたします。」</li>
             <li>例2-1：<a href="sound/keihatsu/禁煙案内3.mp3">♪</a>「当駅では、7時、丁度、から、9時、丁度、まで、禁煙タイムと、なっております。皆様のご協力を、お願いいたします。」</li>
         </ul>
-        <h3 id="alignment" style="background-color: lightgrey;">整列乗車案内</h3>
+        <h3 id="alignment" class="futai">整列乗車案内</h3>
         <p>この案内は主に特定の時間帯でのみ流れることが多いです。4列だけではなく3列や2列も使われます。</p>
         <ul>
             <li>例：<a href="sound/keihatsu/整列乗車1.mp3">♪</a>「ただいま、整列乗車を、お願いしております。4列に、並んで、お待ちください。」</li>

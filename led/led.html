@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="icon.ico">
+        <title>LED発車標</title>
+        <style>
+body{
+    font-family:"MS PGothic","ＭＳ Ｐゴシック",sans-serif;
+    background:#d0d0d0;
+    margin:20px;
+    color:black;
+}
+
+h1{
+    background:linear-gradient(#0040ff,#0020a0);
+    color:white;
+    padding:8px;
+    border:2px outset #ffffff;
+    margin-bottom:20px;
+}
+
+h2{
+    background:#003399;
+    color:white;
+    padding:4px;
+    border-left:10px solid #66ccff;
+    margin-top:30px;
+}
+
+table{
+    border-collapse:collapse;
+    background:white;
+    margin-bottom:25px;
+    box-shadow:2px 2px 0 #808080;
+}
+
+th{
+    background:#003399;
+    color:white;
+    padding:6px 12px;
+    border:1px solid black;
+}
+
+td{
+    border:1px solid black;
+    padding:8px;
+    text-align:center;
+}
+
+img{
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
+    padding:5px;
+    background:#eeeeee;
+    border:1px inset #b0b0b0;
+}
+
+a{
+    color:#0000ff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+p{
+    line-height:1.7;
+}
+
+hr{
+    border:1px solid #808080;
+}
+.display{
+    width:586px;
+    margin:20px auto;
+    background:#111;
+    border:8px solid #333;
+}
+
+.route{
+    height:55px;
+    background:#222;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:left;
+    gap:15px;
+
+    font-family:"MS PGothic",sans-serif;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.route .line{
+    font-size:32px;
+}
+
+.route .code{
+    background:#f15a22; /* ラインカラー */
+    width:20px;
+    height:45px;
+    padding:0;
+    display:block;
+    align-self: flex-end;
+}
+
+.led{
+    height:96px;
+    display:block;
+    image-rendering:pixelated;
+}
+</style>
+    </head>
+    <body>
+        <div
+            style="background:navy; color:white; padding:8px; font-size:28px; font-weight:bold; border:2px outset white; text-align:center;">
+            LED発車標
+        </div>
+        <p>
+            現在は新たに導入されることのないLED発車標についてのページです。<br>
+            以下は例です。
+        </p>
+        <div class="display">
+            <div class="route">
+                <span class="line">1 青梅線・五日市線</span>
+                <span class="code"></span>
+                <span>拝島・青梅・奥多摩方面</span>
+            </div>
+            <img src="departure.png" class="led" style="background: #222; border: none;">
+        </div>
+        <h2>■ 種別</h2>
+        <table border="1">
+            <tr>
+                <th>種別</th>
+                <th>1桁</th>
+                <th>2桁</th>
+                <th>3桁</th>
+            </tr>
+            <tr>
+                <th>普通</th>
+                <td>
+                    <img src="type/local1.png" style="height: 144px;">
+                </td>
+                <td>
+                    <img src="type/local2.png" style="height: 144px;">
+                </td>
+                <td>
+                    <img src="type/local3.png" style="height: 144px;">
+                </td>
+            </tr>
+        </table>
+        <h2>■ 路線名</h2>
+        <table border="1">
+            <tr>
+                <th>路線</th>
+                <th>2桁</th>
+                <th>3桁</th>
+                <th>4桁</th>
+            </tr>
+            <tr>
+                <th>東海道線</th>
+                <td>
+                    <img src="line/tokaido1.png" style="height: 112px;">
+                </td>
+                <td>
+                    <img src="line/tokaido2.png" style="height: 112px;">
+                </td>
+                <td>
+                    <img src="line/tokaido3.png" style="height: 112px;">
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

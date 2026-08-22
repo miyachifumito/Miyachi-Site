@@ -1,518 +1,1034 @@
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>パーツ集-基本</title>
+
+        <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f3f8;
+            color: #222;
+            text-align: center;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5b168f, #7b2cbf);
+            color: white;
+            padding: 28px 20px 24px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .kana-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 12px;
+        }
+
+        .kana-nav-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .kana-nav a {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: #eee8f5;
+            color: #5b168f;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .kana-nav a:hover {
+            background: #6f239f;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .search-area {
+            max-width: 900px;
+            margin: 25px auto 10px;
+            padding: 0 15px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 13px 18px;
+            border: 2px solid #d5c8df;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+        }
+
+        #search:focus {
+            border-color: #7b2cbf;
+            box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.12);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 38px auto;
+            padding: 0 15px;
+            scroll-margin-top: 75px;
+        }
+
+        .section h3 {
+            position: relative;
+            margin: 0 0 15px;
+            padding: 13px 18px;
+            text-align: left;
+            background: white;
+            color: #5b168f;
+            border-left: 6px solid #7b2cbf;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+        }
+
+        th,
+        td {
+            padding: 11px 10px;
+            border-right: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        tr:last-child th,
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: none;
+        }
+
+        table tr:first-child {
+            background: #eee8f5;
+            color: #4d1478;
+        }
+
+        table tr:first-child th {
+    font-weight: bold;
+}
+
+        table tr:not(:first-child) th:first-child {
+            text-align: left;
+            width: 400px;
+            font-weight: normal;
+            background: #fcfbfd;
+        }
+
+        table tr:not(:first-child):hover {
+            background: #faf6ff;
+        }
+
+        table tr:not(:first-child):hover th:first-child {
+            background: #f5edfb;
+        }
+
+        table a {
+            text-decoration: none;
+            font-size: 1.15rem;
+            margin: 0 3px;
+        }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+        .back {
+            margin: 45px 0;
+        }
+
+        .back a {
+            display: inline-block;
+            padding: 11px 25px;
+            background: #6f239f;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: 0.2s;
+        }
+
+        .back a:hover {
+            background: #531477;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 700px) {
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header {
+                padding: 22px 15px;
+            }
+
+            .kana-nav {
+                overflow-x: auto;
+            }
+
+            .kana-nav-inner {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                width: max-content;
+            }
+
+            .kana-nav a {
+                white-space: nowrap;
+            }
+
+            .section {
+                padding: 0 8px;
+                margin: 28px auto;
+            }
+
+            .section h3 {
+                font-size: 1.1rem;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+                border-radius: 10px;
+            }
+
+            table {
+                min-width: 700px;
+            }
+
+            table tr:first-child th {
+                position: static;
+            }
+        }
+    </style>
     </head>
-    <body style="text-align: center;">
-        <h1 style="background-color: purple; color: white;">パーツ集-基本</h1>
-        <p>おはようございます・この電車は・です・は・次は・お待ちください</p>
-        <p><a href="#ag">あ行</a>・<a href="#kg">か行</a>・<a href="#sg">さ行</a>・<a href="#tg">た行</a>・
-            <a href="#ng">な行</a>・<a href="#hg">は行</a>・<a href="#mg">ま行</a>・<a href="#yg">や行</a>・
-            <a href="#rg">ら行</a>・<a href="#wg">わ行</a>
-        </p>
-        <h3 id="ag">あ行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>危ないですから</th>
-                <th><a href="kihon/危ないですから(旧)_s.mp3">♪</a><a href="kihon/危ないですから_s.mp3">♪</a></th>
-                <th><a href="kihon/危ないですから(旧)_ts.mp3">♪</a><a href="kihon/危ないですから_ts.mp3">♪</a></th>
-                <th><a href="kihon/危ないですから(旧)_t.mp3">♪</a><a href="kihon/危ないですから_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>ありがとうございます</th>
-                <th><a href="kihon/ありがとうございます_s.mp3">♪</a></th>
-                <th><a href="kihon/ありがとうございます_ts.mp3">♪</a></th>
-                <th><a href="kihon/ありがとうございます_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>駅で</th>
-                <th><a href="kihon/駅で_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/駅で_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>遅れになっております</th>
-                <th><a>♪</th>
-                <th><a href="kihon/遅れになっております_ts.mp3">♪</th>
-                <th><a href="kihon/遅れになっております_t.mp3">♪</th>
-            </tr>
-            <tr>
-                <th>お下がりください</th>
-                <th><a href="kihon/お下がりください(旧)_s.mp3">♪</a><a href="kihon/お下がりください_s.mp3">♪</a></th>
-                <th><a href="kihon/お下がりください(旧)_ts.mp3">♪</a><a href="kihon/お下がりください_ts.mp3">♪</a></th>
-                <th><a href="kihon/お下がりください_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>おはようございます</th>
-                <th><a href="kihon/おはようございます_s.mp3">♪</th>
-                <th><a href="kihon/おはようございます_ts.mp3">♪</th>
-                <th><a href="kihon/おはようございます_t.mp3">♪</th>
-            </tr>
-            <tr>
-                <th>お願い致します</th>
-                <th><a href="kihon/お願い致します_s.mp3">♪</th>
-                <th><a href="kihon/お願い致します_ts.mp3">♪</th>
-                <th><a href="kihon/お願い致します_t.mp3">♪</th>
-            </tr>
-            <tr>
-                <th>お願いしております</th>
-                <th><a href="kihon/お願いしております_s.mp3">♪</th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>お乗り換えです</th>
-                <th><a href="kihon/お乗り換えです_s.mp3">♪</th>
-                <th><a href="kihon/お乗り換えです_ts.mp3">♪</th>
-                <th><a href="kihon/お乗り換えです_t.mp3">♪</th>
-            </tr>
-            <tr>
-                <th>お乗り遅れの無いように</th>
-                <th><a href="kihon/お乗り遅れの無いように_s.mp3">♪</th>
-                <th><a href="kihon/お乗り遅れの無いように_ts.mp3">♪</th>
-                <th><a href="kihon/お乗り遅れの無いように_t.mp3">♪</th>
-            </tr>
-            <tr>
-                <th>お待ちください</th>
-                <th><a href="kihon/お待ちください(旧)_s.mp3">♪</a><a href="kihon/お待ちください_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>折り返し</th>
-                <th><a href="kihon/折り返し_s.mp3">♪</th>
-                <th><a>♪</th>
-                <th><a>♪</th>
-            </tr>
-        </table>
-        <h3 id="kg">か行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>回送電車が</th>
-                <th><a href="kihon/回送電車が_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>から</th>
-                <th><a href="kihon/から_s.mp3">♪</a></th>
-                <th><a href="kihon/から_ts.mp3">♪</a></th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>から先の各駅に停車します</th>
-                <th>♪♪</th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>黄色い線の内側まで</th>
-                <th><a href="kihon/黄色い線の内側まで_s.mp3">♪</a></th>
-                <th><a href="kihon/黄色い線の内側まで_ts.mp3">♪</a></th>
-                <th>(無し)</th>
-            </tr>
-            <tr>
-                <th>黄色い線まで</th>
-                <th><a href="kihon/黄色い線まで_s.mp3">♪</a></th>
-                <th><a href="kihon/黄色い線まで_ts.mp3">♪</a></th>
-                <th><a href="kihon/黄色い線まで_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>黄色い点字ブロックまで</th>
-                <th><a href="kihon/黄色い点字ブロックまで_s.mp3">♪</a></th>
-                <th>(無し)</th>
-                <th><a href="kihon/黄色い点字ブロックまで_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>切り離しを行います</th>
-                <th>♪<a href="kihon/切り離しを行います_s.mp3">♪</a></th>
-                <th><a href="kihon/切り離しを行います_ts.mp3">♪</a></th>
-                <th><a href="kihon/切り離しを行います_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>グリーン車が付いております</th>
-                <th>♪♪</th>
-                <th>♪♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>グリーン車は付いておりません</th>
-                <th>♪</th>
-                <th>♪</th>
-                <th><a href="kihon/グリーン車は付いておりません_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>グリーン車を除き、全車、スワローサービスです。自由席特急券では、ご乗車いただけません。</th>
-                <th>♪</th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>ご協力を</th>
-                <th>♪</th>
-                <th>(収録不可)</th>
-                <th>(収録不可)</th>
-            </tr>
-            <tr>
-                <th>ご乗車になれませんので</th>
-                <th><a href="kihon/ご乗車になれませんので_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>ご注意ください</th>
-                <th><a href="kihon/ご注意ください_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>この</th>
-                <th><a href="kihon/この_s.mp3">♪</a></th>
-                <th><a href="kihon/この_ts.mp3">♪</a></th>
-                <th>(無し)</th>
-            </tr>
-            <tr>
-                <th>この電車には</th>
-                <th><a href="kihon/この電車には_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>この電車の</th>
-                <th><a href="kihon/この電車の_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>この電車は</th>
-                <th><a href="kihon/この電車は_s.mp3">♪</a></th>
-                <th><a href="kihon/この電車は_ts.mp3">♪</a></th>
-                <th><a href="kihon/この電車は_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>この列車に</th>
-                <th>♪</th>
-                <th>♪</th>
-                <th><a href="kihon/この列車に_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>この列車には</th>
-                <th>♪</th>
-                <th>♪</th>
-                <th>♪</th>
-            </tr>
-            <tr>
-                <th>この列車の</th>
-                <th><a href="kihon/この列車の_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th><a href="kihon/この列車の_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>この列車は</th>
-                <th><a href="kihon/この列車は_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th><a href="kihon/この列車は_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>ご迷惑をおかけしますが、ただいま、放送テスト中です。</th>
-                <th><a href="kihon/ご迷惑をおかけしますが、ただいま、放送テスト中です。_s.mp3">♪</a></th>
-                <th><a href="kihon/ご迷惑をおかけしますが、ただいま、放送テスト中です。_ts.mp3">♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>ご利用ください</th>
-                <th><a>♪</a></th>
-                <th>♪</th>
-                <th><a href="kihon/ご利用ください_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>今度の</th>
-                <th><a href="kihon/今度の_s.mp3">♪</a></th>
-                <th>♪</th>
-                <th><a href="kihon/今度の_t.mp3">♪</a></th>
-            </tr>
-        </table>
-        <h3 id="sg">さ行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>JR東日本をご利用くださいまして</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/JR東日本をご利用くださいまして_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>女性専用車です</th>
-                <th><a href="kihon/女性専用車です_s.mp3">♪</a></th>
-                <th><a href="kihon/女性専用車です_ts.mp3">♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>全車指定席です</th>
-                <th><a href="kihon/全車指定席です_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/全車指定席です_t.mp3">♪</a></th>
-            </tr>
-        </table>
-        <h3 id="tg">た行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>ただいま</th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/ただいま_ts.mp3">♪</a></th>
-                <th><a href="kihon/ただいま_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>立川寄り</th>
-                <th><a href="kihon/立川寄り_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>停車いたしません</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/停車いたしません_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>です</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/です_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>電車を</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/電車を_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>当駅で</th>
-                <th><a href="kihon/当駅で_s.mp3">♪</a></th>
-                <th><a href="kihon/当駅で_ts.mp3">♪</a></th>
-                <th><a href="kihon/当駅で_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>当駅停まりの</th>
-                <th><a href="kihon/当駅停まりの_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/当駅停まりの_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>東京寄り</th>
-                <th><a href="kihon/東京寄り_s.mp3">♪</a></th>
-                <th><a href="kihon/東京寄り_ts.mp3">♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-        </table>
-        <h3 id="ng">な行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>なります</th>
-                <th><a href="kihon/なります_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>には</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/には_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>の</th>
-                <th><a href="kihon/の_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-        </table>
-        <h3 id="hg">は行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>発車いたします</th>
-                <th><a href="kihon/発車いたします_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>方面には参りません</th>
-                <th><a href="kihon/方面には参りません_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/方面には参りません_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>方面は</th>
-                <th><a href="kihon/方面は_s.mp3">♪</a></th>
-                <th><a href="kihon/方面は_ts.mp3">♪</a></th>
-                <th><a href="kihon/方面は_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>方面行きが</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/方面行きが_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>ホームの</th>
-                <th><a href="kihon/ホームの_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/ホームの_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>本日も</th>
-                <th><a>♪♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/本日も_t.mp3">♪</a></th>
-            </tr>
-        </table>
-        <h3 id="mg">ま行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>参ります</th>
-                <th><a href="kihon/参ります_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/参ります_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>まもなく</th>
-                <th><a href="kihon/まもなく_s.mp3">♪</a></th>
-                <th><a href="kihon/まもなく_ts.mp3">♪</a></th>
-                <th><a href="kihon/まもなく_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>三鷹で</th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/三鷹で_ts.mp3">♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-        </table>
-        <h3 id="yg">や行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>約</th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/約_ts.mp3">♪</a></th>
-                <th><a href="kihon/約_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>行き</th>
-                <th><a href="kihon/行き_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>行きが</th>
-                <th><a href="kihon/行きが_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/行きが_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>行きです</th>
-                <th><a href="kihon/行きです_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/行きです_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>行きと</th>
-                <th><a href="kihon/行きと_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>行きとなっております</th>
-                <th><a href="kihon/行きとなっております_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>行きは</th>
-                <th><a href="kihon/行きは_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-        </table>
-        <h3 id="rg">ら行</h3>
-        <table border="1" align="center" style="text-align: center;">
-            <tr>
-                <th style="width: 400px;">パーツ</th>
-                <th>向山佳比子</th>
-                <th>津田英治</th>
-                <th>田中一永</th>
-            </tr>
-            <tr>
-                <th>臨時電車と</th>
-                <th><a href="kihon/臨時電車と_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-            <tr>
-                <th>列車が参ります</th>
-                <th><a href="kihon/列車が参ります_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/列車が参ります_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>列車は</th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-                <th><a href="kihon/列車は_t.mp3">♪</a></th>
-            </tr>
-            <tr>
-                <th>連結を行います</th>
-                <th><a href="kihon/連結を行います_s.mp3">♪</a></th>
-                <th><a>♪</a></th>
-                <th><a>♪</a></th>
-            </tr>
-        </table>
-        <p><a href="parts.html">パーツ集へ戻る</a></p>
+
+    <body>
+
+        <header>
+            <h1>パーツ集 - 基本</h1>
+            <p>おはようございます・この電車は・です・は・次は・お待ちください</p>
+        </header>
+
+        <nav class="kana-nav">
+            <div class="kana-nav-inner">
+                <a href="#ag">あ行</a>
+                <a href="#kg">か行</a>
+                <a href="#sg">さ行</a>
+                <a href="#tg">た行</a>
+                <a href="#ng">な行</a>
+                <a href="#hg">は行</a>
+                <a href="#mg">ま行</a>
+                <a href="#yg">や行</a>
+                <a href="#rg">ら行</a>
+                <a href="#wg">わ行</a>
+            </div>
+        </nav>
+
+        <div class="search-area">
+            <input
+                type="search"
+                id="search"
+                placeholder="パーツ名を検索..."
+                autocomplete="off">
+        </div>
+
+        <!-- ==========================================
+     あ行
+========================================== -->
+
+        <section class="section" id="ag">
+
+            <h3>あ行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+                    <tr>
+                        <th>危ないですから 黄色い線の内側まで お下がりください</th>
+                        <th>
+                            <a href="kihon/危ないですから黄色い線の内側までお下がりください_s.mp3">♪</a>
+                        </th>
+                        <th>
+                            <a href="kihon/危ないですから黄色い線の内側までお下がりください_ts.mp3">♪</a>
+                        </th>
+                        <th>
+                            収録不可
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>危ないですから 黄色い線まで お下がりください</th>
+                        <th>
+                            <a href="kihon/危ないですから黄色い線までお下がりください_s.mp3">♪</a>
+                        </th>
+                        <th>
+                            <a href="kihon/危ないですから黄色い線までお下がりください_ts.mp3">♪</a>
+                        </th>
+                        <th>
+                            <a href="kihon/危ないですから黄色い線までお下がりください(旧)_t.mp3">♪</a>
+                            <a href="kihon/危ないですから黄色い線までお下がりください_t.mp3">♪</a>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>ありがとうございます</th>
+                        <th><a href="kihon/ありがとうございます_s.mp3">♪</a></th>
+                        <th><a href="kihon/ありがとうございます_ts.mp3">♪</a></th>
+                        <th><a href="kihon/ありがとうございます_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>駅で</th>
+                        <th><a href="kihon/駅で_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th><a href="kihon/駅で_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>遅れになっております</th>
+                        <th><a href="kihon/遅れになっております_s.mp3">♪</a></th>
+                        <th><a href="kihon/遅れになっております_ts.mp3">♪</a></th>
+                        <th><a href="kihon/遅れになっております_t.mp3">♪</a></th>
+                    </tr>
+                    <tr>
+                        <th>行いますので</th>
+                        <th>
+                            <a href="kihon/行いますので_s.mp3">♪</a>
+                        </th>
+                        <th>
+                            <a>♪</a>
+                        </th>
+                        <th><a href="kihon/行いますので_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>おはようございます</th>
+                        <th><a href="kihon/おはようございます_s.mp3">♪</a></th>
+                        <th><a href="kihon/おはようございます_ts.mp3">♪</a></th>
+                        <th><a href="kihon/おはようございます_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>お願い致します</th>
+                        <th><a href="kihon/お願い致します_s.mp3">♪</a></th>
+                        <th><a href="kihon/お願い致します_ts.mp3">♪</a></th>
+                        <th><a href="kihon/お願い致します_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>お願いしております</th>
+                        <th><a href="kihon/お願いしております_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>お乗り換えです</th>
+                        <th><a href="kihon/お乗り換えです_s.mp3">♪</a></th>
+                        <th><a href="kihon/お乗り換えです_ts.mp3">♪</a></th>
+                        <th><a href="kihon/お乗り換えです_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>お乗り遅れの無いように</th>
+                        <th><a href="kihon/お乗り遅れの無いように_s.mp3">♪</a></th>
+                        <th><a href="kihon/お乗り遅れの無いように_ts.mp3">♪</a></th>
+                        <th><a href="kihon/お乗り遅れの無いように_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>お待ちください</th>
+                        <th>
+                            <a href="kihon/お待ちください(旧)_s.mp3">♪</a>
+                            <a href="kihon/お待ちください_s.mp3">♪</a>
+                        </th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>折り返し</th>
+                        <th><a href="kihon/折り返し_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     か行
+========================================== -->
+
+        <section class="section" id="kg">
+
+            <h3>か行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>回送電車が</th>
+                        <th><a href="kihon/回送電車が_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>から</th>
+                        <th><a href="kihon/から_s.mp3">♪</a></th>
+                        <th><a href="kihon/から_ts.mp3">♪</a></th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>から先の各駅に停車します</th>
+                        <th>♪♪</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>黄色い点字ブロックまで</th>
+                        <th><a href="kihon/黄色い点字ブロックまで_s.mp3">♪</a></th>
+                        <th>(無し)</th>
+                        <th><a href="kihon/黄色い点字ブロックまで_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>切り離しを行います</th>
+                        <th>♪<a href="kihon/切り離しを行います_s.mp3">♪</a></th>
+                        <th><a href="kihon/切り離しを行います_ts.mp3">♪</a></th>
+                        <th><a href="kihon/切り離しを行います_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>グリーン車が付いております</th>
+                        <th>♪♪</th>
+                        <th>♪♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>グリーン車は付いておりません</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                        <th><a href="kihon/グリーン車は付いておりません_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>グリーン車を除き、全車、スワローサービスです。自由席特急券では、ご乗車いただけません。</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>ご協力を</th>
+                        <th>♪</th>
+                        <th>(収録不可)</th>
+                        <th>(収録不可)</th>
+                    </tr>
+
+                    <tr>
+                        <th>ご乗車になれませんので</th>
+                        <th><a href="kihon/ご乗車になれませんので_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>ご注意ください</th>
+                        <th><a href="kihon/ご注意ください_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>この</th>
+                        <th><a href="kihon/この_s.mp3">♪</a></th>
+                        <th><a href="kihon/この_ts.mp3">♪</a></th>
+                        <th>(無し)</th>
+                    </tr>
+
+                    <tr>
+                        <th>この電車には</th>
+                        <th><a href="kihon/この電車には_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>この電車の</th>
+                        <th><a href="kihon/この電車の_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>この電車は</th>
+                        <th><a href="kihon/この電車は_s.mp3">♪</a></th>
+                        <th><a href="kihon/この電車は_ts.mp3">♪</a></th>
+                        <th><a href="kihon/この電車は_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>この列車に</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                        <th><a href="kihon/この列車に_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>この列車には</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                        <th>♪</th>
+                    </tr>
+
+                    <tr>
+                        <th>この列車の</th>
+                        <th><a href="kihon/この列車の_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th><a href="kihon/この列車の_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>この列車は</th>
+                        <th><a href="kihon/この列車は_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th><a href="kihon/この列車は_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>ご迷惑をおかけしますが、ただいま、放送テスト中です。</th>
+                        <th><a
+                                href="kihon/ご迷惑をおかけしますが、ただいま、放送テスト中です。_s.mp3">♪</a></th>
+                        <th><a
+                                href="kihon/ご迷惑をおかけしますが、ただいま、放送テスト中です。_ts.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>ご利用ください</th>
+                        <th><a>♪</a></th>
+                        <th>♪</th>
+                        <th><a href="kihon/ご利用ください_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>今度の</th>
+                        <th><a href="kihon/今度の_s.mp3">♪</a></th>
+                        <th>♪</th>
+                        <th><a href="kihon/今度の_t.mp3">♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     さ行
+========================================== -->
+
+        <section class="section" id="sg">
+
+            <h3>さ行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+                    <tr>
+                        <th>作業を</th>
+                        <th><a href="kihon/作業を_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/作業を_t.mp3">♪</a></th>
+                    </tr>
+                    <tr>
+                        <th>女性専用車です</th>
+                        <th><a href="kihon/女性専用車です_s.mp3">♪</a></th>
+                        <th><a href="kihon/女性専用車です_ts.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>全車指定席です</th>
+                        <th><a href="kihon/全車指定席です_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/全車指定席です_t.mp3">♪</a></th>
+                    </tr>
+                    <tr>
+                        <th>増結いたします</th>
+                        <th><a href="kihon/増結いたします_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/増結いたします_t.mp3">♪</a></th>
+                    </tr>
+                    <tr>
+                        <th>増結をいたします</th>
+                        <th><a href="kihon/増結をいたします_s.mp3">♪</a></th>
+                        <th><a href="kihon/増結をいたします_ts.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     た行
+========================================== -->
+
+        <section class="section" id="tg">
+
+            <h3>た行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>ただいま</th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/ただいま_ts.mp3">♪</a></th>
+                        <th><a href="kihon/ただいま_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>立川寄り</th>
+                        <th><a href="kihon/立川寄り_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>停車いたしません</th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/停車いたしません_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>です</th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/です_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>電車を</th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/電車を_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>当駅で</th>
+                        <th><a href="kihon/当駅で_s.mp3">♪</a></th>
+                        <th><a href="kihon/当駅で_ts.mp3">♪</a></th>
+                        <th><a href="kihon/当駅で_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>当駅停まりの</th>
+                        <th><a href="kihon/当駅停まりの_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/当駅停まりの_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>東京寄り</th>
+                        <th><a href="kihon/東京寄り_s.mp3">♪</a></th>
+                        <th><a href="kihon/東京寄り_ts.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     な行
+========================================== -->
+
+        <section class="section" id="ng">
+
+            <h3>な行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>なります</th>
+                        <th><a href="kihon/なります_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>には</th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/には_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>の</th>
+                        <th><a href="kihon/の_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     は行
+========================================== -->
+
+        <section class="section" id="hg">
+
+            <h3>は行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>発車いたします</th>
+                        <th><a href="kihon/発車いたします_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>方面には参りません</th>
+                        <th><a href="kihon/方面には参りません_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/方面には参りません_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>方面は</th>
+                        <th><a href="kihon/方面は_s.mp3">♪</a></th>
+                        <th><a href="kihon/方面は_ts.mp3">♪</a></th>
+                        <th><a href="kihon/方面は_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>方面行きが</th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/方面行きが_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>ホームの</th>
+                        <th><a href="kihon/ホームの_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/ホームの_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>本日もJR東日本をご利用くださいましてありがとうございます</th>
+                        <th><a href="kihon/本日もJR東日本をご利用くださいましてありがとうございます_s.mp3">♪</a></th>
+                        <th><a href="kihon/本日もJR東日本をご利用くださいましてありがとうございます_ts.mp3">♪</a></th>
+                        <th><a href="kihon/本日もJR東日本をご利用くださいましてありがとうございます_t.mp3">♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     ま行
+========================================== -->
+
+        <section class="section" id="mg">
+
+            <h3>ま行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>参ります</th>
+                        <th><a href="kihon/参ります_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/参ります_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>まもなく</th>
+                        <th><a href="kihon/まもなく_s.mp3">♪</a></th>
+                        <th><a href="kihon/まもなく_ts.mp3">♪</a></th>
+                        <th><a href="kihon/まもなく_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>三鷹で</th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/三鷹で_ts.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     や行
+========================================== -->
+
+        <section class="section" id="yg">
+
+            <h3>や行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>約</th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/約_ts.mp3">♪</a></th>
+                        <th><a href="kihon/約_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>行き</th>
+                        <th><a href="kihon/行き_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>行きが</th>
+                        <th><a href="kihon/行きが_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/行きが_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>行きです</th>
+                        <th><a href="kihon/行きです_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/行きです_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>行きと</th>
+                        <th><a href="kihon/行きと_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>行きとなっております</th>
+                        <th><a href="kihon/行きとなっております_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>行きは</th>
+                        <th><a href="kihon/行きは_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+     ら行
+========================================== -->
+
+        <section class="section" id="rg">
+
+            <h3>ら行</h3>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <tr>
+                        <th style="width: 400px;">パーツ</th>
+                        <th>向山佳比子</th>
+                        <th>津田英治</th>
+                        <th>田中一永</th>
+                    </tr>
+
+                    <tr>
+                        <th>臨時電車と</th>
+                        <th><a href="kihon/臨時電車と_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>列車が参ります</th>
+                        <th><a href="kihon/列車が参ります_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/列車が参ります_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>列車は</th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a href="kihon/列車は_t.mp3">♪</a></th>
+                    </tr>
+
+                    <tr>
+                        <th>連結を行います</th>
+                        <th><a href="kihon/連結を行います_s.mp3">♪</a></th>
+                        <th><a>♪</a></th>
+                        <th><a>♪</a></th>
+                    </tr>
+                </table>
+
+            </div>
+        </section>
+
+        <div class="back">
+            <a href="parts.html">パーツ集へ戻る</a>
+        </div>
+
+        <script>
+    const search = document.getElementById("search");
+
+    search.addEventListener("input", function () {
+
+        const keyword = this.value.trim().toLowerCase();
+
+        document.querySelectorAll(".section").forEach(section => {
+
+            let visibleRows = 0;
+
+            section.querySelectorAll("table tr").forEach((row, index) => {
+
+                if (index === 0) {
+                    row.style.display = "";
+                    return;
+                }
+
+                const partName = row
+                    .querySelector("th")
+                    ?.textContent
+                    .toLowerCase() || "";
+
+                if (partName.includes(keyword)) {
+                    row.style.display = "";
+                    visibleRows++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            if (keyword && visibleRows === 0) {
+                section.style.display = "none";
+            } else {
+                section.style.display = "";
+            }
+        });
+    });
+</script>
+
     </body>
 </html>
